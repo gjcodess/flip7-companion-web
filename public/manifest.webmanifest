@@ -1,7 +1,7 @@
 {
   "name": "Flip7 Companion",
   "short_name": "Flip7 Companion",
-  "description": "A live companion for the physical Flip 7 card game.",
+  "description": "A one-device companion for the physical Flip 7 card game.",
   "start_url": "/",
   "scope": "/",
   "display_override": ["fullscreen", "standalone"],

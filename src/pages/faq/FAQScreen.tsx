@@ -2,27 +2,22 @@ import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { LandingFooter } from '../landing/LandingFooter'
 import './FAQScreen.css'
-
 function FAQItem({ question, children, open = false }: { question: string; children: string; open?: boolean }) {
   return <details className="faq-item" open={open}>
     <summary><span>{question}</span><b aria-hidden="true">+</b></summary>
     <p>{children}</p>
   </details>
 }
-
 export function FAQScreen() {
   const [navScrolled, setNavScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   useEffect(() => {
     const onScroll = () => setNavScrolled(window.scrollY > 8)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
   const closeMobileMenu = () => setMobileMenuOpen(false)
-
   return <div className="landing-page faq-page">
     <header className={`landing-nav ${navScrolled ? 'scrolled' : ''}`}>
       <div className="landing-nav-inner">
@@ -30,41 +25,36 @@ export function FAQScreen() {
         <nav className="landing-top-links" aria-label="Primary navigation">
           <a href="/">Home</a><a href="/#landing-how">How it Works</a><a href="/rules">Rules</a><a href="/faq">FAQ</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/contact">Contact</a>
         </nav>
-        <a href="/lobby" className="landing-signin">PLAY!</a>
+        <a href="/banker" className="landing-signin">BANKER MODE</a>
         <button className="landing-mobile-toggle" type="button" aria-expanded={mobileMenuOpen} aria-controls="faq-mobile-menu" aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'} onClick={() => setMobileMenuOpen((open) => !open)}>{mobileMenuOpen ? <X size={21} /> : <Menu size={21} />}</button>
       </div>
-      {mobileMenuOpen && <><button className="landing-mobile-backdrop" type="button" aria-label="Close navigation menu" onClick={closeMobileMenu} /><div id="faq-mobile-menu" className="landing-mobile-menu"><nav aria-label="Mobile navigation"><a href="/" onClick={closeMobileMenu}>Home</a><a href="/#landing-how" onClick={closeMobileMenu}>How it Works</a><a href="/rules" onClick={closeMobileMenu}>Game Rules</a><a href="/faq" onClick={closeMobileMenu}>Frequently Asked Questions</a><a href="/privacy" onClick={closeMobileMenu}>Data Privacy Policy</a><a href="/terms" onClick={closeMobileMenu}>Terms &amp; Conditions</a><a href="/contact" onClick={closeMobileMenu}>Contact Us</a></nav><a href="/lobby" className="landing-mobile-signin" onClick={closeMobileMenu}>PLAY!</a></div></>}
+      {mobileMenuOpen && <><button className="landing-mobile-backdrop" type="button" aria-label="Close navigation menu" onClick={closeMobileMenu} /><div id="faq-mobile-menu" className="landing-mobile-menu"><nav aria-label="Mobile navigation"><a href="/" onClick={closeMobileMenu}>Home</a><a href="/#landing-how" onClick={closeMobileMenu}>How it Works</a><a href="/rules" onClick={closeMobileMenu}>Game Rules</a><a href="/faq" onClick={closeMobileMenu}>Frequently Asked Questions</a><a href="/privacy" onClick={closeMobileMenu}>Data Privacy Policy</a><a href="/terms" onClick={closeMobileMenu}>Terms &amp; Conditions</a><a href="/contact" onClick={closeMobileMenu}>Contact Us</a></nav><a href="/banker" className="landing-mobile-signin" onClick={closeMobileMenu}>BANKER MODE</a></div></>}
     </header>
-
     <main className="faq-main">
       <section className="faq-hero">
         <div className="faq-hero-inner">
           <span className="eyebrow">FLIP7 COMPANION · QUICK ANSWERS</span>
           <h1>Questions?<br /><em>Keep playing.</em></h1>
-          <p>Find the quick answer, then get back to the table. These answers cover rooms, rounds, cards, scoring, and the companion app.</p>
-          <div className="faq-hero-badges"><span>Rooms</span><span>Cards</span><span>Scoring</span><span>Players</span></div>
+          <p>Find the quick answer, then get back to the table. These answers cover Banker Mode, Demo Mode, cards, scoring, and the companion app.</p>
+          <div className="faq-hero-badges"><span>Banker Mode</span><span>Cards</span><span>Scoring</span><span>Players</span></div>
         </div>
         <div className="faq-hero-cards" aria-hidden="true"><img src="/cards/SECOND CHANCE.png" alt="" /><img src="/cards/5.png" alt="" /><img src="/cards/FREEZE.png" alt="" /></div>
       </section>
-
       <div className="faq-content">
         <section className="faq-intro faq-panel faq-panel-cyan">
-          <div><span className="eyebrow">NEED THE SHORT VERSION?</span><h2>Set up the table, then press your luck.</h2><p>The host creates a room and approves players. Everyone records the physical cards they flip, chooses when to bank, and works toward 200 points.</p></div>
-          <div className="faq-quick-actions"><a href="/lobby" className="faq-primary">Start a table</a><a href="/rules" className="faq-secondary">Read the rules</a></div>
+          <div><span className="eyebrow">NEED THE SHORT VERSION?</span><h2>Set up the table, then press your luck.</h2><p>Set up the players on one device. The banker records each physical card, banks scores, and keeps the table moving toward the target.</p></div>
+          <div className="faq-quick-actions"><a href="/banker" className="faq-primary">Start banker mode</a><a href="/rules" className="faq-secondary">Read the rules</a></div>
         </section>
-
         <div className="faq-grid">
           <section className="faq-panel faq-group faq-group-yellow">
             <div className="faq-panel-heading"><span className="eyebrow">GETTING STARTED</span><b className="faq-number">01</b></div>
             <h2>Before the first flip.</h2>
-            <FAQItem question="What is Flip7 Companion?" open>It is a companion for the physical Flip 7 card game. You use the real deck, while the app keeps the shared room, player states, cards, and scores together.</FAQItem>
+            <FAQItem question="What is Flip7 Companion?" open>It is a companion for the physical Flip 7 card game. Banker Mode tracks the whole table on one device; Demo Mode lets you practice scoring.</FAQItem>
             <FAQItem question="Do I need the physical Flip 7 deck?">Yes. The app does not draw cards for you. Players flip from the physical deck and record each card in front of them.</FAQItem>
-            <FAQItem question="How do I start a game?">Choose Start a table, enter your display name and target score, then share the room code with the other players.</FAQItem>
-            <FAQItem question="How do players join?">A player enters the room code, chooses a display name, and waits for the host to approve them before the match begins.</FAQItem>
+            <FAQItem question="How do I start a game?">Open Banker Mode, enter the player names and target score, then record each card as it is dealt.</FAQItem>
             <FAQItem question="What is Banker Mode?">Banker Mode lets one person run the whole table from one device. The banker switches between player tables to record cards and actions, while keeping the player order and scores together locally.</FAQItem>
-            <FAQItem question="What is Demo Mode?">Demo Mode is a private practice table for trying the card flow and scoring by yourself. It does not create a room or save the session online.</FAQItem>
+            <FAQItem question="What is Demo Mode?">Demo Mode is a private practice table for trying the card flow and scoring by yourself. Its session ends when you leave or refresh.</FAQItem>
           </section>
-
           <section className="faq-panel faq-group faq-group-cream">
             <div className="faq-panel-heading"><span className="eyebrow">PLAYING A ROUND</span><b className="faq-number">02</b></div>
             <h2>Make the call.</h2>
@@ -73,7 +63,6 @@ export function FAQScreen() {
             <FAQItem question="What happens when I bust?">Your round score becomes zero and your turn ends automatically. The cards stay visible so the table can see what happened, and the round continues for the other active players.</FAQItem>
             <FAQItem question="When does the round end?">The round ends when everyone is banked, frozen, or busted, or when a player reveals seven unique Number cards and earns the Flip 7 bonus.</FAQItem>
           </section>
-
           <section className="faq-panel faq-group faq-group-pink">
             <div className="faq-panel-heading"><span className="eyebrow">CARDS &amp; SCORING</span><b className="faq-number">03</b></div>
             <h2>Know what counts.</h2>
@@ -82,22 +71,19 @@ export function FAQScreen() {
             <FAQItem question="What does Second Chance do?">It cancels one duplicate Number card. Discard the Second Chance card with the duplicate and keep the rest of your round.</FAQItem>
             <FAQItem question="What do Freeze and Flip Three do?">Freeze banks an active player. Flip Three makes an active player accept three cards one at a time.</FAQItem>
           </section>
-
           <section className="faq-panel faq-group faq-group-cyan">
-            <div className="faq-panel-heading"><span className="eyebrow">ROOMS &amp; APP</span><b className="faq-number">04</b></div>
+            <div className="faq-panel-heading"><span className="eyebrow">MODES &amp; APP</span><b className="faq-number">04</b></div>
             <h2>Keep the table moving.</h2>
-            <FAQItem question="Who can start the next round?" open>The host can proceed once every player is banked, frozen, or busted. The next round starts after the current scores are settled.</FAQItem>
+            <FAQItem question="Who can start the next round?" open>In Banker Mode, start the next round once every player is banked, frozen, or busted.</FAQItem>
             <FAQItem question="Can I fix a recording mistake?">Yes. Use the card controls, edit or remove the incorrect card, or use Undo while the round is still being recorded.</FAQItem>
-            <FAQItem question="Can I use the app on my phone?">Yes. Open the shared local or deployed address on your phone while connected to the same network or service as the host.</FAQItem>
-            <FAQItem question="Are Demo and Banker Mode connected to multiplayer?">No. Demo and Banker Mode run on the current device without realtime room synchronization. Use multiplayer mode when each player needs a separate device connected to the same shared room.</FAQItem>
-            <FAQItem question="What happens when someone reaches 200 points?">The game ends after the round is settled. The player with the most total points wins.</FAQItem>
+            <FAQItem question="Can I use the app on my phone?">Yes. Open the app on your phone and run Banker Mode or Demo Mode there.</FAQItem>
+            <FAQItem question="Is my game saved?">No. Banker and Demo sessions stay in memory on the current device and end when you leave or refresh.</FAQItem>
+            <FAQItem question="What happens when someone reaches the target score?">The game ends after the round is settled. The player with the most total points wins.</FAQItem>
           </section>
         </div>
-
         <section className="faq-help faq-panel faq-panel-navy"><span className="eyebrow">STILL STUCK?</span><h2>Open the full rules and keep the game moving.</h2><p>The Rules page has the complete deck, action card, round, and scoring reference.</p><a href="/rules" className="faq-secondary">Open the rules</a></section>
       </div>
     </main>
-
     <LandingFooter isRulesPage />
   </div>
 }

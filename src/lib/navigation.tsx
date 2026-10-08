@@ -29,18 +29,19 @@ type AppNavigationContextValue = {
 
 const navigationContext = createContext<AppNavigationContextValue | null>(null)
 
-const publicPaths = new Set(['/','/landing','/demo','/banker','/lobby','/rules','/faq','/privacy','/terms','/contact'])
+const publicPaths = new Set(['/','/landing','/demo','/banker','/rules','/faq','/privacy','/terms','/contact'])
 
 export function readAppLocation(): AppLocation {
   return { pathname: window.location.pathname, search: window.location.search, hash: window.location.hash }
 }
 
 function normalizePath(pathname: string) {
-  return pathname === '/' ? '/landing' : pathname
+  if (pathname === '/') return '/landing'
+  return publicPaths.has(pathname) ? pathname : '/landing'
 }
 
 function isInternalPath(pathname: string) {
-  return publicPaths.has(pathname) || pathname.startsWith('/game/')
+  return publicPaths.has(pathname)
 }
 
 function locationUrl(location: AppLocation) {
@@ -104,8 +105,9 @@ export function AppNavigationProvider({ navigate, onPopState, children }: { navi
   useEffect(() => {
     const handlePopState = () => {
       const target = readAppLocation()
-      if (target.pathname === '/') {
-        const normalized = toNavigablePath(`${target.pathname}${target.search}${target.hash}`)
+      const current = `${target.pathname}${target.search}${target.hash}`
+      const normalized = toNavigablePath(current)
+      if (normalized !== current) {
         window.history.replaceState({}, '', normalized)
       }
       const targetUrl = currentNavigableUrl()
@@ -212,6 +214,7 @@ export function runAppViewTransition(update: () => void, options?: { skip?: bool
 export function toNavigablePath(to: string) {
   const url = new URL(to, window.location.href)
   const pathname = normalizePath(url.pathname)
+  if (!publicPaths.has(url.pathname)) return pathname
   return `${pathname}${url.search}${url.hash}`
 }
 

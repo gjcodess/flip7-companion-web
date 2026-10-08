@@ -1,9 +1,9 @@
 .banker-shell .game-shell { overflow: hidden; }
 .banker-topbar { gap: 10px; }
 .banker-topbar .topbar-caption { margin-left: auto; }
-.banker-topbar .room-leave-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin-left: 0; line-height: 1; }
-.banker-room-menu .room-menu-title { justify-content: flex-start; color: #ed4f7e; }
-.banker-room-menu .room-menu-title::after { content: none; }
+.banker-topbar .exit-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin-left: 0; line-height: 1; }
+.banker-table-menu .table-menu-title { justify-content: flex-start; color: #ed4f7e; }
+.banker-table-menu .table-menu-title::after { content: none; }
 .banker-setup-wrap { flex: 1; padding-bottom: 24px; background: radial-gradient(rgba(19,45,103,.04) 1.25px, transparent 1.25px); background-size: 18px 18px; }
 .banker-hero,.banker-round-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; padding: 24px 20px 19px; background: linear-gradient(145deg, #fff7da 0 64%, #57b8d7 64%); border-bottom: 3px solid #132d67; }
 .banker-hero h1,.banker-round-heading h1 { margin: 6px 0 4px; color: #132d67; font-size: clamp(29px, 8vw, 42px); line-height: .95; letter-spacing: -2px; }
@@ -56,9 +56,9 @@
 .banker-player-tab.stayed { border-color: #4d8a45; box-shadow: 2px 2px 0 #4d8a45; background: #eef6d9; }
 .banker-player-tab .mini-avatar { width: 28px; height: 28px; }
 .banker-avatar-initial { display: block; transform: translateY(-1px); }
-.banker-player-tab .opponent-copy { min-width: 0; display: flex; flex-direction: column; padding-bottom: 11px; }
-.banker-player-tab .opponent-copy b { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.banker-player-tab .opponent-copy span { font-size: 9px; line-height: 1.25; }
+.banker-player-tab .player-tab-copy { min-width: 0; display: flex; flex-direction: column; padding-bottom: 11px; }
+.banker-player-tab .player-tab-copy b { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.banker-player-tab .player-tab-copy span { font-size: 9px; line-height: 1.25; }
 .banker-player-tab > strong { position: absolute; left: 42px; right: auto; bottom: 7px; display: flex; align-items: center; gap: 3px; font-size: 12px; line-height: 1; white-space: nowrap; }
 .banker-player-tab > strong small { font-size: 8px; font-weight: 800; line-height: 1; transform: translateY(1px); }
 .banker-player-tab > strong b { font-size: 12px; line-height: 1; transform: translateY(1px); }
